@@ -1,17 +1,61 @@
 <template>
-  <div>
-    <select @change="addNewLimit()" v-model="newLimit">
-      <option value="10"> 10 </option>
-      <option value="25"> 25 </option>
-      <option value="50"> 50 </option>
-      <option value="100"> 100 </option>
-    </select>
-    <br/>
-    <button @click="firstPage()" :disabled=isDisabledFirstPrevious>First</button>&nbsp;
-    <button @click="previousPage()" :disabled=isDisabledFirstPrevious> ← Previous </button>&nbsp;
-    <button @click="nextPage()" :disabled=isDisabledNextLast> Next → </button>&nbsp;
-    <button @click="lastPage()" :disabled=isDisabledNextLast> Last </button>
-  </div>
+  <v-container-fluid>
+    <v-row class="settings-row ">
+
+      <v-col
+          cols="12"
+          sm="12"
+          md="6"
+      >
+        <v-select
+            :items="rows"
+            solo
+            label="Rows Per Page"
+            @change="addNewLimit()"
+            v-model="newLimit"
+            style="width: 150px"
+        ></v-select>
+      </v-col>
+
+      <v-col
+          align="right"
+          cols="12"
+          sm="12"
+          md="6"
+      >
+
+        <v-btn
+            class="mx-2"
+            @click="firstPage()"
+            :disabled=isDisabledFirstPrevious
+        >
+          First
+        </v-btn>
+        &nbsp;
+        <v-btn
+            @click="previousPage()"
+            :disabled=isDisabledFirstPrevious
+        >
+          Previous
+        </v-btn>
+        &nbsp;
+        <v-btn
+            @click="nextPage()"
+            :disabled=isDisabledNextLast
+        >
+          Next
+        </v-btn>
+        &nbsp;
+        <v-btn
+            @click="lastPage()"
+            :disabled=isDisabledNextLast
+        >
+          Last
+        </v-btn>
+
+      </v-col>
+    </v-row>
+  </v-container-fluid>
 </template>
 
 <script>
@@ -21,7 +65,8 @@ export default {
 name: "settings",
   data () {
     return {
-      newLimit : this.limit
+      newLimit : this.limit,
+      rows: ['10', '25', '50', '100'],
     }
   },
   computed : {
@@ -66,5 +111,7 @@ name: "settings",
 </script>
 
 <style scoped>
-
+.settings-row {
+  height: auto;
+}
 </style>
