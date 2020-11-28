@@ -45,8 +45,16 @@ export default {
   computed : {
     ...mapState('coins', ['coins'])
   },
+  methods: {
+    autoLoad() {
+      setInterval(() => {
+        this.$store.dispatch('coins/loadCoins')
+      },10000)
+    }
+  },
   mounted() {
     this.$store.dispatch('coins/loadCoins')
+    this.autoLoad()
   }
 }
 </script>
