@@ -1,16 +1,19 @@
 <template>
   <div data-app id="app">
     <settings/>
-    <coin-list />
+    <coin-list/>
+    <page-info/>
   </div>
 </template>
 
 <script>
 import CoinList from "@/components/CoinList";
-import Settings from "@/components/settings";
+import Settings from "@/components/Settings";
+import PageInfo from "@/components/PageInfo";
 export default {
   name: 'App',
   components: {
+    PageInfo,
     Settings,
     CoinList,
   }

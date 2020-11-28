@@ -1,5 +1,5 @@
 <template>
-  <v-container-fluid>
+  <div>
     <v-row class="settings-row ">
 
       <v-col
@@ -22,31 +22,38 @@
           cols="12"
           sm="12"
           md="6"
+          justify="space-around"
       >
 
         <v-btn
-            class="mx-2"
+            class="pb-2"
             @click="firstPage()"
             :disabled=isDisabledFirstPrevious
         >
           First
         </v-btn>
-        &nbsp;
         <v-btn
+            class="pb-2"
             @click="previousPage()"
             :disabled=isDisabledFirstPrevious
         >
-          Previous
+          <v-icon>
+            mdi-arrow-left
+          </v-icon>
         </v-btn>
-        &nbsp;
+
         <v-btn
+            class="pb-2"
             @click="nextPage()"
             :disabled=isDisabledNextLast
         >
-          Next
+          <v-icon>
+            mdi-arrow-right
+          </v-icon>
         </v-btn>
-        &nbsp;
+
         <v-btn
+            class="pb-2"
             @click="lastPage()"
             :disabled=isDisabledNextLast
         >
@@ -55,7 +62,7 @@
 
       </v-col>
     </v-row>
-  </v-container-fluid>
+  </div>
 </template>
 
 <script>
@@ -113,5 +120,8 @@ name: "settings",
 <style scoped>
 .settings-row {
   height: auto;
+}
+.pb-2 {
+  margin: 3px;
 }
 </style>

@@ -8,6 +8,7 @@ const coins = {
         page : 2,
         totalCoins: 0,
         totalPages : 0,
+        isLoading : false,
 
         apiUrl : 'https://api.coinranking.com/v1/public/coins/',
     },
@@ -29,10 +30,14 @@ const coins = {
         },
         SET_PAGE(state, page) {
             state.page = page
+        },
+        SET_LOADING(state, isLoading) {
+            state.isLoading = isLoading
         }
     },
     actions: {
         loadCoins({commit}) {
+            commit('SET_LOADING', true)
             axios
                 .get(`${coins.state.apiUrl}?limit=${coins.state.limit}&offset=${coins.state.offset}`)
                 .then(res => {
@@ -42,8 +47,12 @@ const coins = {
                     let limit = coins.state.limit
                     let totalNumberOfPages = Math.ceil(totalCoins/limit)
                     commit('SET_TOTAL_PAGES', totalNumberOfPages)
+                    commit('SET_LOADING', false)
                 })
-                .catch(error => console.log(error))
+                .catch((error) => {
+                    console.log(error)
+                    commit('SET_LOADING', false)
+                })
         },
         setLimit({commit}, limit) {
             commit('SET_LIMIT', limit)
