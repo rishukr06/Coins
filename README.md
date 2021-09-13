@@ -1,4 +1,4 @@
-# tranzact
+# Vue
 
 ## Project setup
 ```
